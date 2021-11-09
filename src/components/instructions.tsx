@@ -1,6 +1,6 @@
 import Item from './instructions/item';
 
-import type { Board, Row, Cell } from '../utils/board';
+import type { Grid, Row, Cell } from '../utils/board';
 import type { State } from '../records/game-records';
 import type { FunctionComponent } from 'react';
 
@@ -14,8 +14,8 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-function drawn(cells: Board) {
-  return cells.some((row: Row) => row.some((cell: Cell) => cell !== DEAD));
+function drawn(grid: Grid) {
+  return grid.some((row: Row) => row.some((cell: Cell) => cell !== DEAD));
 }
 
 // --------------------------------------------------------------------
@@ -23,7 +23,7 @@ function drawn(cells: Board) {
 const Instructions: FunctionComponent<Props> = ({ store }) => {
   const init       = store.size === 0;
   const grid       = store.size !== 0;
-  const draw       = drawn(store.cells);
+  const draw       = drawn(store.grid);
   const simulation = store.generation !== 0;
 
   return (

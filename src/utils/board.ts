@@ -4,25 +4,25 @@ import { DEAD, ALIVE } from '../constants/constants';
 
 export type Cell = 0 | 1;
 export type Row = Array<Cell>;
-export type Board = Array<Row>;
+export type Grid = Array<Row>;
 
 // --------------------------------------------------------------------
 
-export function iterate(cells: Board): Board {
-  const Y = cells.length - 1;
+export function iterate(grid: Grid): Grid {
+  const Y = grid.length - 1;
 
-  return cells.map((row: Row, y: number): Row => {
+  return grid.map((row: Row, y: number): Row => {
     return row.map((cell: Cell, x: number): Cell => {
       /* eslint-disable computed-property-spacing, no-multi-spaces, indent */
       const values = [
-        y > 0 ? cells[y - 1][x - 1] : undefined, // top left
-        y > 0 ? cells[y - 1][x    ] : undefined, // top
-        y > 0 ? cells[y - 1][x + 1] : undefined, // top right
-                cells[y    ][x - 1],             // left
-                cells[y    ][x + 1],             // right
-        y < Y ? cells[y + 1][x - 1] : undefined, // bottom left
-        y < Y ? cells[y + 1][x    ] : undefined, // bottom
-        y < Y ? cells[y + 1][x + 1] : undefined  // bottom right
+        y > 0 ? grid[y - 1][x - 1] : undefined, // top left
+        y > 0 ? grid[y - 1][x    ] : undefined, // top
+        y > 0 ? grid[y - 1][x + 1] : undefined, // top right
+                grid[y    ][x - 1],             // left
+                grid[y    ][x + 1],             // right
+        y < Y ? grid[y + 1][x - 1] : undefined, // bottom left
+        y < Y ? grid[y + 1][x    ] : undefined, // bottom
+        y < Y ? grid[y + 1][x + 1] : undefined  // bottom right
       ];
       /* eslint-enable */
 

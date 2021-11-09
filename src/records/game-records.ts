@@ -1,18 +1,18 @@
-import type { Board } from '../utils/board';
+import type { Grid } from '../utils/board';
 import { Record } from 'immutable';
 
 // --------------------------------------------------------------------
 
 interface StateInterface {
-  cells: Board;
   generation: number;
+  grid: Grid;
   size: number;
 }
 
 // --------------------------------------------------------------------
 
 export class State extends Record<StateInterface>({
-  cells:      [],
+  grid:       [],
   generation: 0,
   size:       0
 }) {}

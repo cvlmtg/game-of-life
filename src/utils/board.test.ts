@@ -1,5 +1,5 @@
 import { DEAD, ALIVE } from '../constants/constants';
-import { Board, iterate } from './board';
+import { Grid, iterate } from './board';
 
 // --------------------------------------------------------------------
 // questi servono solo per migliorare la leggibilità dei test
@@ -15,7 +15,7 @@ const _ = DEAD;
 describe('correctly calculates the next generation', () => {
   describe('for still lifes', () => {
     it('block (1)', () => {
-      const one: Board = [
+      const one: Grid = [
         [ X, X ],
         [ X, X ]
       ];
@@ -24,7 +24,7 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('block (2)', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, _, _, _ ],
         [ _, X, X, _ ],
         [ _, X, X, _ ],
@@ -35,7 +35,7 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('boat', () => {
-      const one: Board = [
+      const one: Grid = [
         [ X, X, _, _ ],
         [ X, _, X, _ ],
         [ _, X, _, _ ]
@@ -45,7 +45,7 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('beehive', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, X, X, _ ],
         [ X, _, _, X ],
         [ _, X, X, _ ]
@@ -57,13 +57,13 @@ describe('correctly calculates the next generation', () => {
 
   describe('for oscillators', () => {
     it('blinker', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, X, _ ],
         [ _, X, _ ],
         [ _, X, _ ]
       ];
 
-      const two: Board = [
+      const two: Grid = [
         [ _, _, _ ],
         [ X, X, X ],
         [ _, _, _ ]
@@ -74,14 +74,14 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('toad', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, _, _, _ ],
         [ _, X, X, X ],
         [ X, X, X, _ ],
         [ _, _, _, _ ]
       ];
 
-      const two: Board = [
+      const two: Grid = [
         [ _, _, X, _ ],
         [ X, _, _, X ],
         [ X, _, _, X ],
@@ -93,14 +93,14 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('beacon', () => {
-      const one: Board = [
+      const one: Grid = [
         [ X, X, _, _ ],
         [ X, _, _, _ ],
         [ _, _, _, X ],
         [ _, _, X, X ]
       ];
 
-      const two: Board = [
+      const two: Grid = [
         [ X, X, _, _ ],
         [ X, X, _, _ ],
         [ _, _, X, X ],
@@ -114,7 +114,7 @@ describe('correctly calculates the next generation', () => {
 
   describe('spaceships', () => {
     it('glider', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, X, _, _ ],
         [ _, _, X, _ ],
         [ X, X, X, _ ],
@@ -122,7 +122,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _ ]
       ];
 
-      const two: Board = [
+      const two: Grid = [
         [ _, _, _, _ ],
         [ X, _, X, _ ],
         [ _, X, X, _ ],
@@ -130,7 +130,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _ ]
       ];
 
-      const three: Board = [
+      const three: Grid = [
         [ _, _, _, _ ],
         [ _, _, X, _ ],
         [ X, _, X, _ ],
@@ -138,7 +138,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _ ]
       ];
 
-      const four: Board = [
+      const four: Grid = [
         [ _, _, _, _ ],
         [ _, X, _, _ ],
         [ _, _, X, X ],
@@ -146,7 +146,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _ ]
       ];
 
-      const five: Board = [
+      const five: Grid = [
         [ _, _, _, _ ],
         [ _, _, X, _ ],
         [ _, _, _, X ],
@@ -161,7 +161,7 @@ describe('correctly calculates the next generation', () => {
     });
 
     it('light-weight spaceship', () => {
-      const one: Board = [
+      const one: Grid = [
         [ _, _, _, _, _, _, _ ],
         [ X, _, _, X, _, _, _ ],
         [ _, _, _, _, X, _, _ ],
@@ -170,7 +170,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _, _, _, _ ]
       ];
 
-      const two: Board = [
+      const two: Grid = [
         [ _, _, _, _, _, _, _ ],
         [ _, _, _, _, _, _, _ ],
         [ _, _, _, X, X, _, _ ],
@@ -179,7 +179,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, X, X, _, _, _ ]
       ];
 
-      const three: Board = [
+      const three: Grid = [
         [ _, _, _, _, _, _, _ ],
         [ _, _, _, _, _, _, _ ],
         [ _, _, X, X, X, X, _ ],
@@ -188,7 +188,7 @@ describe('correctly calculates the next generation', () => {
         [ _, X, _, _, X, _, _ ]
       ];
 
-      const four: Board = [
+      const four: Grid = [
         [ _, _, _, _, _, _, _ ],
         [ _, _, _, X, X, _, _ ],
         [ _, _, X, X, X, X, _ ],
@@ -197,7 +197,7 @@ describe('correctly calculates the next generation', () => {
         [ _, _, _, _, _, _, _ ]
       ];
 
-      const five: Board = [
+      const five: Grid = [
         [ _, _, _, _, _, _, _ ],
         [ _, _, X, _, _, X, _ ],
         [ _, _, _, _, _, _, X ],

@@ -12,14 +12,14 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
-  if (store.sizeX === 0) {
+  if (store.size === 0) {
     return (
       <GridSize />
     );
   }
 
   return (
-    <p>Grid size: {store.sizeX} × {store.sizeY}</p>
+    <p>Grid size: {store.size} × {store.size}</p>
   );
 };
 

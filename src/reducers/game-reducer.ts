@@ -5,10 +5,7 @@ import type { Action } from 'monarc';
 // --------------------------------------------------------------------
 
 function updateGridSize(state: State, action: Action): State {
-  return state.withMutations((mutable) => {
-    mutable.set('sizeX', action.x);
-    mutable.set('sizeY', action.y);
-  });
+  return state.set('size', action.size);
 }
 
 // --------------------------------------------------------------------

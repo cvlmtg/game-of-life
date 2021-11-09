@@ -1,18 +1,29 @@
+import Select, { RSSValue, RSSOption } from 'react-smart-select';
 import { updateGridSize } from '../actions/game-actions';
 import { FunctionComponent, useState } from 'react';
-import Input from './grid-size/input';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
 
+const options = [
+  { label: '8 × 8', value: 8 },
+  { label: '24 × 24', value: 24 },
+  { label: '64 × 64', value: 64 }
+];
+
+// --------------------------------------------------------------------
+
 const GridSize: FunctionComponent = () => {
-  const [ sizeX, setX ] = useState(2);
-  const [ sizeY, setY ] = useState(2);
+  const [ size, setSize ] = useState<RSSValue>();
 
+  const disabled = size === undefined;
   const dispatch = useDispatch();
-
   const onSubmit = () => {
-    updateGridSize(dispatch, sizeX, sizeY);
+    const selected = size as RSSOption;
+
+    if (selected) {
+      updateGridSize(dispatch, selected.value);
+    }
   };
 
   return (
@@ -21,12 +32,13 @@ const GridSize: FunctionComponent = () => {
         <p className="lead">Select the grid size</p>
 
         <div className="row align-items-center">
-          <Input value={sizeX} onChange={setX}>Width</Input>
-          <Input value={sizeY} onChange={setY}>Height</Input>
+          <div className="col">
+            <Select value={size} options={options} onChange={setSize} />
+          </div>
 
           <div className="col">
             <button type="button" className="btn btn-primary"
-              onClick={onSubmit}>
+              disabled={disabled} onClick={onSubmit}>
               Create grid
             </button>
           </div>

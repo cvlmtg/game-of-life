@@ -4,10 +4,9 @@ import { Record } from 'immutable';
 // --------------------------------------------------------------------
 
 interface StateInterface {
-  cells: Board,
-  generation: number,
-  sizeX: number,
-  sizeY: number
+  cells: Board;
+  generation: number;
+  size: number;
 }
 
 // --------------------------------------------------------------------
@@ -15,6 +14,5 @@ interface StateInterface {
 export class State extends Record<StateInterface>({
   cells:      [],
   generation: 0,
-  sizeX:      0,
-  sizeY:      0
+  size:       0
 }) {}

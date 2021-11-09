@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import { State } from './records/game-records';
 import Game from './containers/game';

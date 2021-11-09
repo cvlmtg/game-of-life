@@ -1,6 +1,6 @@
 import Select, { RSSValue, RSSOption } from 'react-smart-select';
+import { FunctionComponent, Fragment, useState } from 'react';
 import { updateGridSize } from '../actions/game-actions';
-import { FunctionComponent, useState } from 'react';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -27,24 +27,18 @@ const GridSize: FunctionComponent = () => {
   };
 
   return (
-    <div className="card w-50 mx-auto my-3 align-items-center">
-      <form className="card-body">
-        <p className="lead">Select the grid size</p>
+    <Fragment>
+      <div className="text-center">
+        <Select value={size} options={options} onChange={setSize} />
+      </div>
 
-        <div className="row align-items-center">
-          <div className="col">
-            <Select value={size} options={options} onChange={setSize} />
-          </div>
+      <hr />
 
-          <div className="col">
-            <button type="button" className="btn btn-primary"
-              disabled={disabled} onClick={onSubmit}>
-              Create grid
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+      <button type="button" className="btn btn-secondary"
+        disabled={disabled} onClick={onSubmit}>
+        Create grid
+      </button>
+    </Fragment>
   );
 };
 

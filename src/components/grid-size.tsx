@@ -16,16 +16,23 @@ const GridSize: FunctionComponent = () => {
   };
 
   return (
-    <form>
-      <div className="row align-items-center">
-        <Input value={sizeX} onChange={setX}>Width</Input>
-        <Input value={sizeY} onChange={setY}>Height</Input>
-      </div>
+    <div className="card w-50 mx-auto my-3 align-items-center">
+      <form className="card-body">
+        <p className="lead">Select the grid size</p>
 
-      <div className="row">
-        <button type="button" onClick={onSubmit}>Create grid</button>
-      </div>
-    </form>
+        <div className="row align-items-center">
+          <Input value={sizeX} onChange={setX}>Width</Input>
+          <Input value={sizeY} onChange={setY}>Height</Input>
+
+          <div className="col">
+            <button type="button" className="btn btn-primary"
+              onClick={onSubmit}>
+              Create grid
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

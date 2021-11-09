@@ -4,13 +4,13 @@ import { createContainer } from 'monarc';
 
 import type { FunctionComponent } from 'react';
 
-interface ContainerProps {
+interface Props {
   store: State
 }
 
 // --------------------------------------------------------------------
 
-const GameContainer: FunctionComponent<ContainerProps> = ({ store }) => {
+const GameContainer: FunctionComponent<Props> = ({ store }) => {
   if (store.sizeX === 0) {
     return (
       <div>

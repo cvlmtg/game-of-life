@@ -9,9 +9,9 @@ type Action = {
 
 // --------------------------------------------------------------------
 
-export default function reduce(state: State, action: Action) {
+export default function reduce(state: State, action: Action): State {
   switch (action.type) {
     default:
-      return state
+      return state;
   }
 }

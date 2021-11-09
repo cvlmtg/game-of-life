@@ -1,0 +1,1 @@
+export const UPDATE_GRID_SIZE = 'UPDATE_GRID_SIZE';

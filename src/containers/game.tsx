@@ -1,8 +1,11 @@
 import gameReducer from '../reducers/game-reducer';
-import { State } from '../records/game-records';
+import GridSize from '../components/grid-size';
 import { createContainer } from 'monarc';
 
+import type { State } from '../records/game-records';
 import type { FunctionComponent } from 'react';
+
+// --------------------------------------------------------------------
 
 interface Props {
   store: State
@@ -13,15 +16,13 @@ interface Props {
 const GameContainer: FunctionComponent<Props> = ({ store }) => {
   if (store.sizeX === 0) {
     return (
-      <div>
-        setup
-      </div>
+      <GridSize />
     );
   }
 
   return (
     <div>
-      foo
+      <p>Grid size: {store.sizeX} × {store.sizeY}</p>
     </div>
   );
 };

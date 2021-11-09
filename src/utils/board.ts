@@ -46,3 +46,7 @@ export function iterate(grid: Grid): Grid {
     });
   });
 }
+
+export function hasCells(grid: Grid): boolean {
+  return grid.some((row: Row) => row.some((cell: Cell) => cell === ALIVE));
+}

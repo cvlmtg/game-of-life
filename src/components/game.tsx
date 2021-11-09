@@ -1,6 +1,7 @@
 import { FunctionComponent, Fragment } from 'react';
 import GridSize from '../components/grid-size';
 import Grid from '../components/grid';
+import Buttons from './game/buttons';
 
 import type { State } from '../records/game-records';
 
@@ -27,9 +28,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
 
       <hr />
 
-      <button type="button" className="btn btn-secondary">
-        Start simulation
-      </button>
+      <Buttons store={store} />
     </Fragment>
   );
 };

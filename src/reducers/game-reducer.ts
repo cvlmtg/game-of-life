@@ -1,7 +1,7 @@
 import { State } from '../records/game-records';
 import * as actions from '../constants/actions';
+import { Grid, iterate } from '../utils/board';
 import { DEAD } from '../constants/constants';
-import type { Grid } from '../utils/board';
 import type { Action } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -23,12 +23,31 @@ function updateGridSize(state: State, action: Action): State {
   });
 }
 
+function nextGeneration(state: State): State {
+  const updated = iterate(state.grid);
+
+  return state.set('grid', updated);
+}
+
+function resetGame(state: State): State {
+  return state.withMutations((mutable) => {
+    mutable.delete('grid');
+    mutable.delete('size');
+  });
+}
+
 // --------------------------------------------------------------------
 
 export default function reduce(state: State, action: Action): State {
   switch (action.type) {
     case actions.UPDATE_GRID_SIZE:
       return updateGridSize(state, action);
+
+    case actions.NEXT_GENERATION:
+      return nextGeneration(state);
+
+    case actions.RESET_GAME:
+      return resetGame(state);
 
     default:
       return state;

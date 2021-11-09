@@ -7,8 +7,8 @@ import { useDispatch } from 'monarc';
 
 const options = [
   { label: '8 × 8', value: 8 },
-  { label: '24 × 24', value: 24 },
-  { label: '64 × 64', value: 64 }
+  { label: '12 × 12', value: 12 },
+  { label: '20 × 20', value: 20 }
 ];
 
 // --------------------------------------------------------------------

@@ -20,8 +20,13 @@ function useSimulation(dispatch: Dispatch<Action>): [ boolean, OnToggle ] {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
 
+    // XXX un'animazione troppo veloce rende l'esperienza
+    // abbastanza confusa. introduciamo quindi un ritardo
+    // artificiale (con un sistema abbastanza crudo, ma
+    // per il momento ci accontentiamo)
+
     if (running === true) {
-      timer = setInterval(onInterval, 100);
+      timer = setInterval(onInterval, 250);
 
       return () => {
         clearInterval(timer);

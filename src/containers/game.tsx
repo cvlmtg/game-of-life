@@ -10,6 +10,10 @@ import type { FunctionComponent } from 'react';
 
 // --------------------------------------------------------------------
 
+const style = {
+  maxWidth: '550px'
+};
+
 interface Props {
   store: State
 }
@@ -20,9 +24,9 @@ const GameContainer: FunctionComponent<Props> = ({ store }) => {
   const Component = store.size === 0 ? Size : Game;
 
   return (
-    <div className="card w-50 mx-auto mt-3 mb-5">
-      <div className="card-body">
-        <h1 className="card-title text-center">Conway&apos;s Game of Life</h1>
+    <div className="container shadow-2 mx-auto p-3 mt-3" style={style}>
+      <div>
+        <h1 className="text-center">Conway&apos;s Game of Life</h1>
         <Instructions store={store} />
         <Component store={store} />
       </div>

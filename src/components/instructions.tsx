@@ -20,7 +20,7 @@ const Instructions: FunctionComponent<Props> = ({ store }) => {
   const simulation = store.generation !== 0;
 
   return (
-    <ul className="my-5">
+    <ul className="mt-3 mt-md-5 mb-3">
       <Item active={init} completed={grid}>
         Select the grid size
       </Item>

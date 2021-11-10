@@ -13,7 +13,7 @@ const options = [
 
 // --------------------------------------------------------------------
 
-const GridSize: FunctionComponent = () => {
+const Size: FunctionComponent = () => {
   const [ size, setSize ] = useState<RSSValue>();
 
   const disabled = size === undefined;
@@ -42,4 +42,4 @@ const GridSize: FunctionComponent = () => {
   );
 };
 
-export default GridSize;
+export default Size;

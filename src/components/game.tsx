@@ -1,5 +1,5 @@
 import { FunctionComponent, Fragment } from 'react';
-import GridSize from '../components/grid-size';
+import Size from '../components/size';
 import Grid from '../components/grid';
 import Buttons from './game/buttons';
 import Presets from './game/presets';
@@ -19,7 +19,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
 
   if (store.size === 0) {
     return (
-      <GridSize />
+      <Size />
     );
   }
 

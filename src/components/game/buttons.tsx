@@ -10,7 +10,7 @@ import type { State } from '../../records/game-records';
 
 // --------------------------------------------------------------------
 
-function useSimulation(dispatch: Dispatch<Action>): [ boolean, OnToggle ] {
+function useSimulation(dispatch: Dispatch<Action>, empty: boolean): [ boolean, OnToggle ] {
   const [ running, setRunning ] = useState(false);
 
   const onInterval = useCallback(() => {
@@ -20,12 +20,17 @@ function useSimulation(dispatch: Dispatch<Action>): [ boolean, OnToggle ] {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
 
+    if (empty) {
+      setRunning(false);
+      return undefined;
+    }
+
     // XXX un'animazione troppo veloce rende l'esperienza
     // abbastanza confusa. introduciamo quindi un ritardo
     // artificiale (con un sistema abbastanza crudo, ma
     // per il momento ci accontentiamo)
 
-    if (running === true) {
+    if (running) {
       timer = setInterval(onInterval, 250);
 
       return () => {
@@ -34,7 +39,7 @@ function useSimulation(dispatch: Dispatch<Action>): [ boolean, OnToggle ] {
     }
 
     return undefined;
-  }, [ running, onInterval ]);
+  }, [ empty, running, onInterval ]);
 
   if (running === true) {
     return [ true, () => setRunning(false) ];
@@ -56,7 +61,7 @@ const GameButtons: FunctionComponent<Props> = ({ store }) => {
   const onReset  = () => resetGame(dispatch);
   const empty    = hasCells(store.grid) === false;
 
-  const [ running, onToggle ] = useSimulation(dispatch);
+  const [ running, onToggle ] = useSimulation(dispatch, empty);
 
   if (running === true) {
     return (

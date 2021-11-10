@@ -2,6 +2,7 @@ import { FunctionComponent, Fragment } from 'react';
 import GridSize from '../components/grid-size';
 import Grid from '../components/grid';
 import Buttons from './game/buttons';
+import Presets from './game/presets';
 
 import type { State } from '../records/game-records';
 
@@ -26,6 +27,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
         <Grid store={store} />
       </div>
 
+      <Presets />
       <hr />
 
       <Buttons store={store} />

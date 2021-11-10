@@ -26,11 +26,15 @@ function updateGridSize(state: State, action: Action): State {
 function nextGeneration(state: State): State {
   const updated = iterate(state.grid);
 
-  return state.set('grid', updated);
+  return state.withMutations((mutable) => {
+    mutable.set('generation', state.generation + 1);
+    mutable.set('grid', updated);
+  });
 }
 
 function resetGame(state: State): State {
   return state.withMutations((mutable) => {
+    mutable.delete('generation');
     mutable.delete('grid');
     mutable.delete('size');
   });

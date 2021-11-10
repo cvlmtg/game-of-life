@@ -17,7 +17,7 @@ const Instructions: FunctionComponent<Props> = ({ store }) => {
   const init       = store.size === 0;
   const grid       = store.size !== 0;
   const draw       = hasCells(store.grid);
-  const simulation = store.generation !== 0;
+  const simulation = draw && store.generation !== 0;
 
   return (
     <ul className="mt-3 mt-md-5 mb-3">

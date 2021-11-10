@@ -1,5 +1,7 @@
 import Select, { RSSValue, RSSOption } from 'react-smart-select';
 import { FunctionComponent, Fragment, useState } from 'react';
+import Presets from './game/presets';
+
 import { updateGridSize } from '../actions/game-actions';
 import { useDispatch } from 'monarc';
 
@@ -32,6 +34,7 @@ const Size: FunctionComponent = () => {
         <Select value={size} options={options} onChange={setSize} />
       </div>
 
+      <Presets />
       <hr />
 
       <button type="button" className="btn btn-secondary"

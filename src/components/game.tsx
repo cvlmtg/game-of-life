@@ -26,6 +26,9 @@ const Game: FunctionComponent<Props> = ({ store }) => {
   return (
     <Fragment>
       <div className="text-center">
+        <p>
+          Generation nr. {store.generation}
+        </p>
         <Grid content={grid} />
       </div>
 

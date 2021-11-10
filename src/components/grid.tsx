@@ -1,23 +1,20 @@
-import type { State } from '../records/game-records';
 import type { FunctionComponent } from 'react';
-import type { Row } from '../utils/board';
+import type { Grid, Row } from '../utils/board';
 import GridRow from './grid/row';
 
 // --------------------------------------------------------------------
 
 interface Props {
-  store: State
+  content: Grid
 }
 
 // --------------------------------------------------------------------
 
-const Grid: FunctionComponent<Props> = ({ store }) => {
-  const grid = store.grid;
-
+const PetriDish: FunctionComponent<Props> = ({ content }) => {
   return (
     <table className="mx-auto">
       <tbody>
-        {grid.map((row: Row, index: number) => (
+        {content.map((row: Row, index: number) => (
           <GridRow key={index} content={row} />
         ))}
       </tbody>
@@ -25,4 +22,4 @@ const Grid: FunctionComponent<Props> = ({ store }) => {
   );
 };
 
-export default Grid;
+export default PetriDish;

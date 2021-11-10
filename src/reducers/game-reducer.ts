@@ -40,6 +40,17 @@ function resetGame(state: State): State {
   });
 }
 
+function loadPreset(state: State, action: Action): State {
+  const grid = action.preset;
+  const size = grid.length;
+
+  return state.withMutations((mutable) => {
+    mutable.delete('generation');
+    mutable.set('grid', grid);
+    mutable.set('size', size);
+  });
+}
+
 // --------------------------------------------------------------------
 
 export default function reduce(state: State, action: Action): State {
@@ -52,6 +63,9 @@ export default function reduce(state: State, action: Action): State {
 
     case actions.RESET_GAME:
       return resetGame(state);
+
+    case actions.LOAD_PRESET:
+      return loadPreset(state, action);
 
     default:
       return state;

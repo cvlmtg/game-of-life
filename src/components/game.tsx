@@ -15,6 +15,8 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
+  const grid = store.grid;
+
   if (store.size === 0) {
     return (
       <GridSize />
@@ -24,7 +26,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
   return (
     <Fragment>
       <div className="text-center">
-        <Grid store={store} />
+        <Grid content={grid} />
       </div>
 
       <Presets />

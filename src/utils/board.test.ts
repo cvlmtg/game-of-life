@@ -11,6 +11,7 @@ const _ = DEAD;
 // esempi presi da
 //
 // 1) https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+// 2) https://conwaylife.com/wiki/Conway%27s_Game_of_Life
 
 describe('the iterate function calculates the next generation', () => {
   describe('for still lifes', () => {

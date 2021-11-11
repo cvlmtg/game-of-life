@@ -11,8 +11,9 @@ const _ = DEAD;
 // esempi presi da
 //
 // 1) https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+// 2) https://conwaylife.com/wiki/Conway%27s_Game_of_Life
 
-describe('correctly calculates the next generation', () => {
+describe('the iterate function calculates the next tick', () => {
   describe('for still lifes', () => {
     it('block (1)', () => {
       const one: Grid = [

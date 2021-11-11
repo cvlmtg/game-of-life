@@ -18,7 +18,7 @@ const BoardCell: FunctionComponent<Props> = ({ content }) => {
   const icon = content === ALIVE ? ICON_ALIVE : ICON_DEAD;
 
   return (
-    <td className="px-1">
+    <td>
       <i className={icon} />
     </td>
   );

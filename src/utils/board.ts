@@ -50,3 +50,7 @@ export function iterate(grid: Grid): Grid {
 export function hasCells(grid: Grid): boolean {
   return grid.some((row: Row) => row.some((cell: Cell) => cell === ALIVE));
 }
+
+export function areEqual(prev: Grid, grid: Grid): boolean {
+  return grid.every((row, r) => row.every((cell, c) => cell === prev[r][c]));
+}

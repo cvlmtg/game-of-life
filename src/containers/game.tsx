@@ -21,7 +21,7 @@ interface Props {
 // --------------------------------------------------------------------
 
 const GameContainer: FunctionComponent<Props> = ({ store }) => {
-  const Component = store.size === 0 ? Size : Game;
+  const Component = store.grid.length === 0 ? Size : Game;
 
   return (
     <div className="container shadow-2 mx-auto p-3 mt-3" style={style}>

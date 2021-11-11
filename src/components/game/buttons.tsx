@@ -35,11 +35,11 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
     <Fragment>
       <button type="button" className="btn btn-secondary"
         disabled={empty} onClick={onToggle}>
-        Start simulation
+        Start game
       </button>
       <button type="button" className="btn btn-secondary-outline ms-3"
         onClick={onClear}>
-        Clear grid
+        Clear
       </button>
       <button type="button" className="btn btn-secondary-outline ms-3"
         onClick={onReset}>

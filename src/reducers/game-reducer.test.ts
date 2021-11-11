@@ -28,7 +28,7 @@ describe('the game reducer', () => {
     actions.loadPreset(dispatch, preset);
     actions.nextGeneration(dispatch);
 
-    expect(store.size).toEqual(2);
+    expect(store.grid.length).toEqual(2);
     expect(store.generation).toEqual(1);
 
     actions.loadPreset(dispatch, preset);
@@ -43,7 +43,7 @@ describe('the game reducer', () => {
     actions.drawCell(dispatch, 4, 6);
     actions.nextGeneration(dispatch);
 
-    expect(store.size).toEqual(8);
+    expect(store.grid.length).toEqual(8);
     expect(store.generation).toEqual(1);
 
     actions.drawCell(dispatch, 2, 2);

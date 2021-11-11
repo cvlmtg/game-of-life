@@ -61,9 +61,9 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
-  const empty = hasCells(store.grid) === false;
   const grid  = store.grid;
-  const size  = store.size;
+  const size  = grid.length;
+  const empty = hasCells(grid) === false;
 
   const [ running, onToggle ] = useSimulation(empty);
 

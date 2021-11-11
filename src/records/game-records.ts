@@ -9,6 +9,4 @@ export class State {
   grid: Grid = [];
 
   generation = 0;
-
-  size = 0;
 }

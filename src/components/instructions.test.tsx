@@ -27,7 +27,7 @@ describe('the Instructions component', () => {
 
     // la prima cosa da fare è scegliere la dimensione della griglia
 
-    expect(store.size).toEqual(0);
+    expect(store.grid.length).toEqual(0);
     expect(muted.length).toEqual(2);
     expect(strong.length).toEqual(1);
     expect(first.innerHTML).toEqual('Select the grid size');
@@ -46,7 +46,7 @@ describe('the Instructions component', () => {
     // passiamo allo step che ci invita a disegnare
     // lo stato iniziare della simulazione
 
-    expect(store.size).toEqual(8);
+    expect(store.grid.length).toEqual(8);
     expect(muted.length).toEqual(1);
     expect(strong.length).toEqual(1);
     expect(first.innerHTML).toEqual('Draw on the grid');
@@ -65,7 +65,7 @@ describe('the Instructions component', () => {
     // quando abbiamo almeno una cella sulla griglia
     // possiamo far partire la simulazione
 
-    expect(store.size).toEqual(8);
+    expect(store.grid.length).toEqual(8);
     expect(muted.length).toEqual(0);
     expect(strong.length).toEqual(1);
     expect(first.innerHTML).toEqual('Start the simulation');

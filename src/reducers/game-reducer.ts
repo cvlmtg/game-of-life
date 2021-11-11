@@ -19,7 +19,6 @@ function updateGridSize(state: State, action: Action): void {
   }
 
   state.grid = grid;
-  state.size = size;
 }
 
 function nextGeneration(state: State): void {
@@ -29,12 +28,10 @@ function nextGeneration(state: State): void {
 
 function resetGame(state: State): void {
   state.grid       = [];
-  state.size       = 0;
   state.generation = 0;
 }
 
 function loadPreset(state: State, action: Action): void {
-  state.size       = action.preset.length;
   state.grid       = action.preset;
   state.generation = 0;
 }

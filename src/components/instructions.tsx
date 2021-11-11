@@ -14,8 +14,8 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Instructions: FunctionComponent<Props> = ({ store }) => {
-  const init       = store.size === 0;
-  const grid       = store.size !== 0;
+  const init       = store.grid.length === 0;
+  const grid       = store.grid.length !== 0;
   const draw       = hasCells(store.grid);
   const simulation = draw && store.generation !== 0;
 

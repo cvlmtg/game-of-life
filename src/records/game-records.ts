@@ -1,18 +1,14 @@
 import type { Grid } from '../utils/board';
-import { Record } from 'immutable';
+import { immerable } from 'immer';
 
 // --------------------------------------------------------------------
 
-interface StateInterface {
-  generation: number;
-  grid: Grid;
-  size: number;
+export class State {
+  [immerable] = true;
+
+  grid: Grid = [];
+
+  generation = 0;
+
+  size = 0;
 }
-
-// --------------------------------------------------------------------
-
-export class State extends Record<StateInterface>({
-  grid:       [],
-  generation: 0,
-  size:       0
-}) {}

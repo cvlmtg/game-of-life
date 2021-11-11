@@ -3,10 +3,11 @@ import { State } from '../records/game-records';
 import * as actions from '../constants/actions';
 import { Grid, iterate } from '../utils/board';
 import type { Action } from 'monarc';
+import immer from 'immer';
 
 // --------------------------------------------------------------------
 
-function updateGridSize(state: State, action: Action): State {
+function updateGridSize(state: State, action: Action): void {
   const size: number = action.size;
   const grid: Grid   = [];
 
@@ -17,75 +18,61 @@ function updateGridSize(state: State, action: Action): State {
     grid.push(row);
   }
 
-  return state.withMutations((mutable) => {
-    mutable.set('grid', grid);
-    mutable.set('size', size);
-  });
+  state.grid = grid;
+  state.size = size;
 }
 
-function nextGeneration(state: State): State {
-  const updated = iterate(state.grid);
-
-  return state.withMutations((mutable) => {
-    mutable.set('generation', state.generation + 1);
-    mutable.set('grid', updated);
-  });
+function nextGeneration(state: State): void {
+  state.grid        = iterate(state.grid);
+  state.generation += 1;
 }
 
-function resetGame(state: State): State {
-  return state.withMutations((mutable) => {
-    mutable.delete('generation');
-    mutable.delete('grid');
-    mutable.delete('size');
-  });
+function resetGame(state: State): void {
+  state.grid       = [];
+  state.size       = 0;
+  state.generation = 0;
 }
 
-function loadPreset(state: State, action: Action): State {
-  const grid = action.preset;
-  const size = grid.length;
-
-  return state.withMutations((mutable) => {
-    mutable.delete('generation');
-    mutable.set('grid', grid);
-    mutable.set('size', size);
-  });
+function loadPreset(state: State, action: Action): void {
+  state.size       = action.preset.length;
+  state.grid       = action.preset;
+  state.generation = 0;
 }
 
-function drawCell(state: State, action: Action): State {
+function drawCell(state: State, action: Action): void {
   const { x, y } = action;
   const current  = state.grid;
   const cell     = current[y][x];
-  const value    = cell === DEAD ? ALIVE : DEAD;
 
-  const row  = Array.from(current[y], (old, i) => (i === x ? value : old));
-  const grid = Array.from(current, (old, i) => (i === y ? row : old));
-
-  return state.withMutations((mutable) => {
-    mutable.delete('generation');
-    mutable.set('grid', grid);
-  });
+  state.grid[y][x] = cell === DEAD ? ALIVE : DEAD;
+  state.generation = 0;
 }
 
 // --------------------------------------------------------------------
 
-export default function reduce(state: State, action: Action): State {
+export default immer((state: State, action: Action): void => {
   switch (action.type) {
     case actions.UPDATE_GRID_SIZE:
-      return updateGridSize(state, action);
+      updateGridSize(state, action);
+      break;
 
     case actions.NEXT_GENERATION:
-      return nextGeneration(state);
+      nextGeneration(state);
+      break;
 
     case actions.RESET_GAME:
-      return resetGame(state);
+      resetGame(state);
+      break;
 
     case actions.LOAD_PRESET:
-      return loadPreset(state, action);
+      loadPreset(state, action);
+      break;
 
     case actions.DRAW_CELL:
-      return drawCell(state, action);
+      drawCell(state, action);
+      break;
 
     default:
-      return state;
+      break;
   }
-}
+});

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, useMemo, useRef } from 'react';
-import { nextGeneration } from '../actions/game-actions';
+import { nextTick } from '../actions/game-actions';
 import { Grid, hasCells, areEqual } from './board';
 import { useDispatch } from 'monarc';
 
@@ -23,18 +23,18 @@ export function usePrevious<T>(value: T): T | undefined {
   return ref.current;
 }
 
-export function useSimulation(grid: Grid, generation: number): [ boolean, OnToggle ] {
+export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
   const [ running, setRunning ] = useState(false);
 
   const previous = usePrevious(grid);
   const dispatch = useDispatch();
 
   const onInterval = useCallback(() => {
-    nextGeneration(dispatch);
+    nextTick(dispatch);
   }, [ dispatch ]);
 
   useEffect(() => {
-    const stable    = previous && generation ? areEqual(previous, grid) : false;
+    const stable    = previous && tick ? areEqual(previous, grid) : false;
     const populated = hasCells(grid);
 
     if (populated === false || stable === true) {
@@ -58,7 +58,7 @@ export function useSimulation(grid: Grid, generation: number): [ boolean, OnTogg
     }
 
     return undefined;
-  }, [ previous, grid, generation, running, onInterval ]);
+  }, [ previous, grid, tick, running, onInterval ]);
 
   if (running === true) {
     return [ true, () => setRunning(false) ];

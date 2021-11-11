@@ -18,7 +18,7 @@ describe('the game reducer', () => {
     store = new State();
   });
 
-  it('resets the generation to zero when loading a preset', () => {
+  it('resets the tick to zero when loading a preset', () => {
     const preset: Grid = [
       [ DEAD, ALIVE ],
       [ ALIVE, ALIVE ]
@@ -26,28 +26,28 @@ describe('the game reducer', () => {
 
     actions.updateGridSize(dispatch, 8);
     actions.loadPreset(dispatch, preset);
-    actions.nextGeneration(dispatch);
+    actions.nextTick(dispatch);
 
     expect(store.grid.length).toEqual(2);
-    expect(store.generation).toEqual(1);
+    expect(store.tick).toEqual(1);
 
     actions.loadPreset(dispatch, preset);
 
-    expect(store.generation).toEqual(0);
+    expect(store.tick).toEqual(0);
   });
 
-  it('resets the generation to zero when drawing on the board', () => {
+  it('resets the tick to zero when drawing on the board', () => {
     actions.updateGridSize(dispatch, 8);
     actions.drawCell(dispatch, 4, 4);
     actions.drawCell(dispatch, 4, 5);
     actions.drawCell(dispatch, 4, 6);
-    actions.nextGeneration(dispatch);
+    actions.nextTick(dispatch);
 
     expect(store.grid.length).toEqual(8);
-    expect(store.generation).toEqual(1);
+    expect(store.tick).toEqual(1);
 
     actions.drawCell(dispatch, 2, 2);
 
-    expect(store.generation).toEqual(0);
+    expect(store.tick).toEqual(0);
   });
 });

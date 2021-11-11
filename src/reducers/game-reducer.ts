@@ -20,19 +20,19 @@ function createGrid(state: State, size: number): void {
   state.grid = grid;
 }
 
-function nextGeneration(state: State): void {
-  state.grid        = iterate(state.grid);
-  state.generation += 1;
+function nextTick(state: State): void {
+  state.grid  = iterate(state.grid);
+  state.tick += 1;
 }
 
 function resetGame(state: State): void {
-  state.grid       = [];
-  state.generation = 0;
+  state.grid = [];
+  state.tick = 0;
 }
 
 function loadPreset(state: State, action: Action): void {
-  state.grid       = action.preset;
-  state.generation = 0;
+  state.grid = action.preset;
+  state.tick = 0;
 }
 
 function drawCell(state: State, action: Action): void {
@@ -41,7 +41,7 @@ function drawCell(state: State, action: Action): void {
   const cell     = current[y][x];
 
   state.grid[y][x] = cell === DEAD ? ALIVE : DEAD;
-  state.generation = 0;
+  state.tick       = 0;
 }
 
 // --------------------------------------------------------------------
@@ -56,8 +56,8 @@ export default immer((state: State, action: Action): void => {
       createGrid(state, state.grid.length);
       break;
 
-    case actions.NEXT_GENERATION:
-      nextGeneration(state);
+    case actions.NEXT_TICK:
+      nextTick(state);
       break;
 
     case actions.RESET_GAME:

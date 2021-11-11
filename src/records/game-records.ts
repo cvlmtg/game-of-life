@@ -8,5 +8,5 @@ export class State {
 
   grid: Grid = [];
 
-  generation = 0;
+  tick = 0;
 }

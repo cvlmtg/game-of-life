@@ -12,6 +12,10 @@ export function nextGeneration(dispatch: Dispatch<Action>): void {
   dispatch({ type: actions.NEXT_GENERATION });
 }
 
+export function clearGrid(dispatch: Dispatch<Action>): void {
+  dispatch({ type: actions.CLEAR_GRID });
+}
+
 export function resetGame(dispatch: Dispatch<Action>): void {
   dispatch({ type: actions.RESET_GAME });
 }

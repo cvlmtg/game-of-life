@@ -7,9 +7,8 @@ import immer from 'immer';
 
 // --------------------------------------------------------------------
 
-function updateGridSize(state: State, action: Action): void {
-  const size: number = action.size;
-  const grid: Grid   = [];
+function createGrid(state: State, size: number): void {
+  const grid: Grid = [];
 
   for (let i = 0; i < size; i++) {
     const empty = new Array(size);
@@ -50,7 +49,11 @@ function drawCell(state: State, action: Action): void {
 export default immer((state: State, action: Action): void => {
   switch (action.type) {
     case actions.UPDATE_GRID_SIZE:
-      updateGridSize(state, action);
+      createGrid(state, action.size);
+      break;
+
+    case actions.CLEAR_GRID:
+      createGrid(state, state.grid.length);
       break;
 
     case actions.NEXT_GENERATION:

@@ -15,7 +15,7 @@ const style = {
 };
 
 interface Props {
-  store: State
+  store: State;
 }
 
 // --------------------------------------------------------------------

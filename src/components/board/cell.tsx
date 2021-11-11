@@ -9,7 +9,7 @@ const ICON_ALIVE = 'bi-circle-fill';
 const ICON_DEAD  = 'bi-circle';
 
 interface Props {
-  content: Cell
+  content: Cell;
 }
 
 // --------------------------------------------------------------------

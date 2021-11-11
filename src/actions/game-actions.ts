@@ -19,3 +19,7 @@ export function resetGame(dispatch: Dispatch<Action>): void {
 export function loadPreset(dispatch: Dispatch<Action>, preset: Grid): void {
   dispatch({ type: actions.LOAD_PRESET, preset });
 }
+
+export function drawCell(dispatch: Dispatch<Action>, x: number, y: number): void {
+  dispatch({ type: actions.DRAW_CELL, x, y });
+}

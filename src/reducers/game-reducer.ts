@@ -1,7 +1,7 @@
+import { DEAD, ALIVE } from '../constants/constants';
 import { State } from '../records/game-records';
 import * as actions from '../constants/actions';
 import { Grid, iterate } from '../utils/board';
-import { DEAD } from '../constants/constants';
 import type { Action } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -51,6 +51,21 @@ function loadPreset(state: State, action: Action): State {
   });
 }
 
+function drawCell(state: State, action: Action): State {
+  const { x, y } = action;
+  const current  = state.grid;
+  const cell     = current[y][x];
+  const value    = cell === DEAD ? ALIVE : DEAD;
+
+  const row  = Array.from(current[y], (old, i) => (i === x ? value : old));
+  const grid = Array.from(current, (old, i) => (i === y ? row : old));
+
+  return state.withMutations((mutable) => {
+    mutable.delete('generation');
+    mutable.set('grid', grid);
+  });
+}
+
 // --------------------------------------------------------------------
 
 export default function reduce(state: State, action: Action): State {
@@ -66,6 +81,9 @@ export default function reduce(state: State, action: Action): State {
 
     case actions.LOAD_PRESET:
       return loadPreset(state, action);
+
+    case actions.DRAW_CELL:
+      return drawCell(state, action);
 
     default:
       return state;

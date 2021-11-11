@@ -105,7 +105,7 @@ const Draw: FunctionComponent<Props> = ({ className, size, children, onChange })
   }, []);
 
   // registriamo il mouseup su document, perché se rilasciamo
-  // il mouse al di fuori della griglia, rimarremo "bloccati"
+  // il mouse al di fuori della griglia rimarremo "bloccati"
   // in modalità disegno
 
   useEffect(() => {

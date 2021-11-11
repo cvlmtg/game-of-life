@@ -18,7 +18,7 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   const onClear  = () => {
     clearGrid(dispatch);
   };
-  const onReset  = () => {
+  const onReset = () => {
     resetGame(dispatch);
   };
 

@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useCallback, useEffect, useState, useMemo, useRef } from 'react';
 import { nextGeneration } from '../actions/game-actions';
+import { Grid, hasCells, areEqual } from './board';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -12,9 +13,20 @@ export function useRandomId(): string {
   return useMemo(() => Math.random().toString(36).substring(2, 6) || '-', []);
 }
 
-export function useSimulation(empty: boolean): [ boolean, OnToggle ] {
+export function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>();
+
+  useEffect(() => {
+    ref.current = value;
+  });
+
+  return ref.current;
+}
+
+export function useSimulation(grid: Grid, generation: number): [ boolean, OnToggle ] {
   const [ running, setRunning ] = useState(false);
 
+  const previous = usePrevious(grid);
   const dispatch = useDispatch();
 
   const onInterval = useCallback(() => {
@@ -22,9 +34,10 @@ export function useSimulation(empty: boolean): [ boolean, OnToggle ] {
   }, [ dispatch ]);
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    const stable    = previous && generation ? areEqual(previous, grid) : false;
+    const populated = hasCells(grid);
 
-    if (empty) {
+    if (populated === false || stable === true) {
       setRunning(false);
       return undefined;
     }
@@ -33,6 +46,8 @@ export function useSimulation(empty: boolean): [ boolean, OnToggle ] {
     // abbastanza confusa. introduciamo quindi un ritardo
     // artificiale (con un sistema abbastanza crudo, ma
     // per il momento ci accontentiamo)
+
+    let timer: ReturnType<typeof setTimeout>;
 
     if (running) {
       timer = setInterval(onInterval, 250);
@@ -43,7 +58,7 @@ export function useSimulation(empty: boolean): [ boolean, OnToggle ] {
     }
 
     return undefined;
-  }, [ empty, running, onInterval ]);
+  }, [ previous, grid, generation, running, onInterval ]);
 
   if (running === true) {
     return [ true, () => setRunning(false) ];

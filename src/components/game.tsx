@@ -16,10 +16,11 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
-  const grid  = store.grid;
-  const empty = hasCells(grid) === false;
+  const grid       = store.grid;
+  const generation = store.generation;
+  const empty      = hasCells(grid) === false;
 
-  const [ running, onToggle ] = useSimulation(empty);
+  const [ running, onToggle ] = useSimulation(grid, generation);
 
   return (
     <Fragment>

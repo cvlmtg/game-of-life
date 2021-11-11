@@ -15,7 +15,9 @@ interface Props {
 
 const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   const dispatch = useDispatch();
-  const onReset  = () => resetGame(dispatch);
+  const onReset  = () => {
+    resetGame(dispatch);
+  };
 
   if (running === true) {
     return (

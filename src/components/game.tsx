@@ -17,7 +17,6 @@ interface Props {
 
 const Game: FunctionComponent<Props> = ({ store }) => {
   const grid  = store.grid;
-  const size  = grid.length;
   const empty = hasCells(grid) === false;
 
   const [ running, onToggle ] = useSimulation(empty);
@@ -28,7 +27,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
         <p>
           Generation nr. {store.generation}
         </p>
-        <Wrapper running={running} grid={grid} size={size} />
+        <Wrapper running={running} grid={grid} />
       </div>
 
       <Presets />

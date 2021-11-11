@@ -10,14 +10,14 @@ import { useDispatch } from 'monarc';
 
 interface Props {
   running: boolean;
-  size: number;
   grid: Grid;
 }
 
 // --------------------------------------------------------------------
 
-const Wrapper: FunctionComponent<Props> = ({ running, grid, size }) => {
+const Wrapper: FunctionComponent<Props> = ({ running, grid }) => {
   const dispatch = useDispatch();
+  const size     = grid.length;
 
   const onChange = (x: number, y: number) => {
     drawCell(dispatch, x, y);

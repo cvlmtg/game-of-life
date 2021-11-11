@@ -1,5 +1,5 @@
-import type { FunctionComponent } from 'react';
 import type { Grid, Row } from '../utils/board';
+import type { FunctionComponent } from 'react';
 import BoardRow from './board/row';
 
 // --------------------------------------------------------------------

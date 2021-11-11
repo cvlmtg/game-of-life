@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 import type { Row, Cell } from '../../utils/board';
-import GridCell from './cell';
+import BoardCell from './cell';
 
 // --------------------------------------------------------------------
 
@@ -10,14 +10,14 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-const GridRow: FunctionComponent<Props> = ({ content }) => {
+const BoardRow: FunctionComponent<Props> = ({ content }) => {
   return (
     <tr>
       {content.map((cell: Cell, index: number) => (
-        <GridCell key={index} content={cell} />
+        <BoardCell key={index} content={cell} />
       ))}
     </tr>
   );
 };
 
-export default GridRow;
+export default BoardRow;

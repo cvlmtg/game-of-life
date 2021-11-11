@@ -14,7 +14,7 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-const GridCell: FunctionComponent<Props> = ({ content }) => {
+const BoardCell: FunctionComponent<Props> = ({ content }) => {
   const icon = content === ALIVE ? ICON_ALIVE : ICON_DEAD;
 
   return (
@@ -24,4 +24,4 @@ const GridCell: FunctionComponent<Props> = ({ content }) => {
   );
 };
 
-export default GridCell;
+export default BoardCell;

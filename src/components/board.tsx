@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 import type { Grid, Row } from '../utils/board';
-import GridRow from './grid/row';
+import BoardRow from './board/row';
 
 // --------------------------------------------------------------------
 
@@ -10,16 +10,16 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-const PetriDish: FunctionComponent<Props> = ({ content }) => {
+const Board: FunctionComponent<Props> = ({ content }) => {
   return (
     <table className="mx-auto">
       <tbody>
         {content.map((row: Row, index: number) => (
-          <GridRow key={index} content={row} />
+          <BoardRow key={index} content={row} />
         ))}
       </tbody>
     </table>
   );
 };
 
-export default PetriDish;
+export default Board;

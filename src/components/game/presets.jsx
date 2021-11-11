@@ -1,7 +1,7 @@
 import { FunctionComponent, Fragment, useState } from 'react';
 import Pagination from '../pagination';
 import Modal from '../modal';
-import Grid from '../grid';
+import Board from '../board';
 
 import { loadPreset } from '../../actions/game-actions';
 import presets from '../../utils/presets';
@@ -30,7 +30,7 @@ const Presets: FunctionComponent = () => {
       </button>
       <Modal open={open} title="Import a preset" confirm="import"
         onClose={onClose} onConfirm={onConfirm}>
-        <Grid content={preset} />
+        <Board content={preset} />
         <Pagination page={page} total={total} onChange={setPage} />
       </Modal>
     </Fragment>

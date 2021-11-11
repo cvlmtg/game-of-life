@@ -12,7 +12,7 @@ const _ = DEAD;
 //
 // 1) https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
-describe('correctly calculates the next generation', () => {
+describe('the iterate function calculates the next generation', () => {
   describe('for still lifes', () => {
     it('block (1)', () => {
       const one: Grid = [

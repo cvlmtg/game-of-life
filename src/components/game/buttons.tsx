@@ -26,7 +26,7 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
     return (
       <button type="button" className="btn btn-secondary"
         disabled={empty} onClick={onToggle}>
-        Stop simulation
+        Stop game
       </button>
     );
   }

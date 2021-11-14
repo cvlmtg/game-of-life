@@ -48,7 +48,7 @@ export function iterate(grid: Grid): Grid {
 }
 
 export function hasCells(grid: Grid): boolean {
-  return grid.some((row: Row) => row.some((cell: Cell) => cell === ALIVE));
+  return grid.some((row) => row.some((cell) => cell === ALIVE));
 }
 
 export function areEqual(prev: Grid, grid: Grid): boolean {

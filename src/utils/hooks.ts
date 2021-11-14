@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useMemo, useRef } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { nextTick } from '../actions/game-actions';
 import { Grid, hasCells, areEqual } from './board';
 import { useDispatch } from 'monarc';
@@ -29,10 +29,6 @@ export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
   const previous = usePrevious(grid);
   const dispatch = useDispatch();
 
-  const onInterval = useCallback(() => {
-    nextTick(dispatch);
-  }, [ dispatch ]);
-
   useEffect(() => {
     const stable    = previous && tick ? areEqual(previous, grid) : false;
     const populated = hasCells(grid);
@@ -50,7 +46,7 @@ export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
     let timer: ReturnType<typeof setTimeout>;
 
     if (running) {
-      timer = setInterval(onInterval, 250);
+      timer = setInterval(() => nextTick(dispatch), 250);
 
       return () => {
         clearInterval(timer);
@@ -58,7 +54,7 @@ export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
     }
 
     return undefined;
-  }, [ previous, grid, tick, running, onInterval ]);
+  }, [ previous, grid, tick, running, dispatch ]);
 
   if (running === true) {
     return [ true, () => setRunning(false) ];

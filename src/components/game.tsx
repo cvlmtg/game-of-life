@@ -16,8 +16,8 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
-  const grid  = store.grid;
-  const tick  = store.tick;
+  const { grid, tick } = store;
+
   const empty = hasCells(grid) === false;
 
   const [ running, onToggle ] = useSimulation(grid, tick);

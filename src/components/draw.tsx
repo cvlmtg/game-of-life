@@ -75,13 +75,13 @@ const Draw: FunctionComponent<Props> = ({ className, size, children, onChange })
   }, [ state, size, onChange ]);
 
   const onStart = useCallback((evt: Evt) => {
-    const rect = evt.currentTarget.getBoundingClientRect();
-    let x = 0;
-    let y = 0;
-
     if ('touches' in evt && evt.touches.length > 1) {
       return;
     }
+
+    const rect = evt.currentTarget.getBoundingClientRect();
+    let x = 0;
+    let y = 0;
 
     if (evt.type === 'mousedown') {
       [ x, y ] = coords(evt, rect, size);

@@ -1,7 +1,7 @@
 import { FunctionComponent, Fragment } from 'react';
-import Buttons from './game/buttons';
 import Presets from './game/presets';
 import Wrapper from './game/wrapper';
+import Footer from './game/footer';
 
 import type { State } from '../records/game-records';
 import { useSimulation } from '../utils/hooks';
@@ -34,7 +34,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
       <Presets />
       <hr />
 
-      <Buttons empty={empty} running={running} onToggle={onToggle} />
+      <Footer empty={empty} running={running} onToggle={onToggle} />
     </Fragment>
   );
 };

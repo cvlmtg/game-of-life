@@ -13,7 +13,7 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
+const Footer: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   const dispatch = useDispatch();
   const onClear  = () => {
     clearGrid(dispatch);
@@ -49,4 +49,4 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   );
 };
 
-export default Buttons;
+export default Footer;

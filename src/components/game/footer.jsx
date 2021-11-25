@@ -1,6 +1,7 @@
 import { FunctionComponent, Fragment } from 'react';
 
-import { resetGame, clearGrid } from '../../actions/game-actions';
+import { resetGame, nextTick } from '../../actions/game-actions';
+import { NEXT_STEP } from '../../constants/constants';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -13,13 +14,13 @@ interface Props {
 
 // --------------------------------------------------------------------
 
-const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
+const Footer: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   const dispatch = useDispatch();
-  const onClear  = () => {
-    clearGrid(dispatch);
-  };
   const onReset = () => {
     resetGame(dispatch);
+  };
+  const onNext = () => {
+    nextTick(dispatch);
   };
 
   if (running === true) {
@@ -38,8 +39,11 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
         Start game
       </button>
       <button type="button" className="btn btn-secondary-outline ms-3"
-        onClick={onClear}>
-        Clear
+        onClick={onNext}>
+        <span className="d-none d-md-inline">
+          Next
+        </span>
+        <i className={NEXT_STEP} />
       </button>
       <button type="button" className="btn btn-secondary-outline ms-3"
         onClick={onReset}>
@@ -49,4 +53,4 @@ const Buttons: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   );
 };
 
-export default Buttons;
+export default Footer;

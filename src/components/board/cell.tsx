@@ -1,12 +1,9 @@
 import type { FunctionComponent } from 'react';
 import type { Cell } from '../../utils/board';
 
-import { ALIVE } from '../../constants/constants';
+import { ALIVE, ICON_ALIVE, ICON_DEAD } from '../../constants/constants';
 
 // --------------------------------------------------------------------
-
-const ICON_ALIVE = 'bi-circle-fill';
-const ICON_DEAD  = 'bi-circle';
 
 interface Props {
   content: Cell;

@@ -1,6 +1,6 @@
 import { FunctionComponent, Fragment } from 'react';
 
-import { resetGame, clearGrid } from '../../actions/game-actions';
+import { resetGame } from '../../actions/game-actions';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -15,9 +15,6 @@ interface Props {
 
 const Footer: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
   const dispatch = useDispatch();
-  const onClear  = () => {
-    clearGrid(dispatch);
-  };
   const onReset = () => {
     resetGame(dispatch);
   };
@@ -36,10 +33,6 @@ const Footer: FunctionComponent<Props> = ({ empty, running, onToggle }) => {
       <button type="button" className="btn btn-secondary"
         disabled={empty} onClick={onToggle}>
         Start game
-      </button>
-      <button type="button" className="btn btn-secondary-outline ms-3"
-        onClick={onClear}>
-        Clear
       </button>
       <button type="button" className="btn btn-secondary-outline ms-3"
         onClick={onReset}>

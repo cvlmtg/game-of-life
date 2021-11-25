@@ -25,7 +25,7 @@ const Presets: FunctionComponent = () => {
 
   return (
     <Fragment>
-      <button className="btn btn-link" onClick={onOpen}>
+      <button className="btn btn-link d-block" onClick={onOpen}>
         Import preset
       </button>
       <Modal open={open} title="Import a preset" confirm="import"

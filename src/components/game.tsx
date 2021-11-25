@@ -2,6 +2,7 @@ import { FunctionComponent, Fragment } from 'react';
 import Presets from './game/presets';
 import Wrapper from './game/wrapper';
 import Footer from './game/footer';
+import Clear from './game/clear';
 
 import type { State } from '../records/game-records';
 import { useSimulation } from '../utils/hooks';
@@ -32,6 +33,7 @@ const Game: FunctionComponent<Props> = ({ store }) => {
       </div>
 
       <Presets />
+      <Clear />
       <hr />
 
       <Footer empty={empty} running={running} onToggle={onToggle} />

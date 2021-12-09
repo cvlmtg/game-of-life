@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { nextTick } from '../actions/game-actions';
 import { Grid, hasCells, areEqual } from './board';
 import { useDispatch } from 'monarc';
@@ -8,10 +8,6 @@ import { useDispatch } from 'monarc';
 type OnToggle = () => void;
 
 // --------------------------------------------------------------------
-
-export function useRandomId(): string {
-  return useMemo(() => Math.random().toString(36).substring(2, 6) || '-', []);
-}
 
 export function usePrevious<T>(value: T): T | undefined {
   const ref = useRef<T>();

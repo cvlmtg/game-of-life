@@ -17,17 +17,17 @@ interface Props {
 // --------------------------------------------------------------------
 
 const Game: FunctionComponent<Props> = ({ store }) => {
-  const { grid, tick } = store;
+  const { prev, grid, tick } = store;
 
   const empty = hasCells(grid) === false;
 
-  const [ running, onToggle ] = useSimulation(grid, tick);
+  const [ running, onToggle ] = useSimulation(prev, grid);
 
   return (
     <Fragment>
       <div className="text-center">
         <p>
-          Tick nr. {store.tick}
+          Tick nr. {tick}
         </p>
         <Wrapper running={running} grid={grid} />
       </div>

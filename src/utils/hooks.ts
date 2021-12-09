@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
 import { nextTick } from '../actions/game-actions';
 import { Grid, hasCells, areEqual } from './board';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'monarc';
 
 // --------------------------------------------------------------------
@@ -9,24 +9,13 @@ type OnToggle = () => void;
 
 // --------------------------------------------------------------------
 
-export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
-
-  useEffect(() => {
-    ref.current = value;
-  });
-
-  return ref.current;
-}
-
-export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
+export function useSimulation(prev: Grid, grid: Grid): [ boolean, OnToggle ] {
   const [ running, setRunning ] = useState(false);
 
-  const previous = usePrevious(grid);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const stable    = previous && tick ? areEqual(previous, grid) : false;
+    const stable    = running && prev.length !== 0 ? areEqual(prev, grid) : false;
     const populated = hasCells(grid);
 
     if (populated === false || stable === true) {
@@ -50,7 +39,7 @@ export function useSimulation(grid: Grid, tick: number): [ boolean, OnToggle ] {
     }
 
     return undefined;
-  }, [ previous, grid, tick, running, dispatch ]);
+  }, [ prev, grid, running, dispatch ]);
 
   if (running === true) {
     return [ true, () => setRunning(false) ];

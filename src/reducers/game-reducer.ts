@@ -18,20 +18,24 @@ function createGrid(state: State, size: number): void {
   }
 
   state.grid = grid;
+  state.prev = [];
 }
 
 function nextTick(state: State): void {
-  state.grid  = iterate(state.grid);
   state.tick += 1;
+  state.prev  = state.grid;
+  state.grid  = iterate(state.grid);
 }
 
 function resetGame(state: State): void {
   state.grid = [];
+  state.prev = [];
   state.tick = 0;
 }
 
 function loadPreset(state: State, action: Action): void {
   state.grid = action.preset;
+  state.prev = [];
   state.tick = 0;
 }
 
